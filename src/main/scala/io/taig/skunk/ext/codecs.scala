@@ -15,4 +15,6 @@ object codecs {
     * which (in some cases) is better represented by `Instant`
     */
   val instant: Codec[Instant] = timestamptz.imap(_.toInstant)(_.atOffset(ZoneOffset.UTC))
+
+  val password: Codec[Password.Hashed] = text.imap(Password.Hashed.apply)(_.value)
 }
