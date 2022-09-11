@@ -4,7 +4,7 @@
 
 ## Installation
 
-```
+```sbt
 libraryDependencies ++=
   "io.taig" %% "skunk-ext" % "x.y.z" ::
   Nil
