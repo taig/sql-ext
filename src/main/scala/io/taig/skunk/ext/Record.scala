@@ -1,6 +1,6 @@
 package io.taig.skunk.ext
 
-import cats.syntax.all._
+import cats.implicits._
 import cats.{Applicative, Eval, Order, Traverse}
 
 import java.time.Instant
@@ -24,7 +24,15 @@ object Record {
 
   final case class Updated(value: Instant) extends AnyVal
 
+  object Updated {
+    implicit val order: Order[Record.Updated] = Order.by[Updated, Instant](_.value)(Order.fromOrdering[Instant])
+  }
+
   final case class Created(value: Instant) extends AnyVal
+
+  object Created {
+    implicit val order: Order[Record.Created] = Order.by[Created, Instant](_.value)(Order.fromOrdering[Instant])
+  }
 
   final case class Immutable[A](identifier: Record.Identifier, created: Record.Created, value: A) {
     def map[B](f: A => B): Record.Immutable[B] = copy(value = f(value))

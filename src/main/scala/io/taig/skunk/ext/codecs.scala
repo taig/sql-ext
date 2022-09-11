@@ -16,13 +16,13 @@ object codecs {
     */
   val instant: Codec[Instant] = timestamptz.imap(_.toInstant)(_.atOffset(ZoneOffset.UTC))
 
-  val identifier: Codec[Record.Identifier] = int8.gimap
+  val identifier: Codec[Record.Identifier] = int8.imap(Record.Identifier.apply)(_.value)
 
   val identifiers: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.value))
 
-  val created: Codec[Record.Created] = instant.gimap
+  val created: Codec[Record.Created] = instant.imap(Record.Created.apply)(_.value)
 
-  val updated: Codec[Record.Updated] = instant.gimap
+  val updated: Codec[Record.Updated] = instant.imap(Record.Updated.apply)(_.value)
 
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier ~ updated.opt ~ created ~ value).gimap
   def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier ~ created ~ value).gimap
