@@ -4,7 +4,7 @@ import cats.syntax.all._
 import org.typelevel.ci.CIString
 import skunk.Codec
 import skunk.codec.all._
-import skunk.data.Type
+import skunk.data.{Arr, Type}
 
 import java.time.{Instant, ZoneOffset}
 
@@ -15,6 +15,17 @@ object codecs {
     * which (in some cases) is better represented by `Instant`
     */
   val instant: Codec[Instant] = timestamptz.imap(_.toInstant)(_.atOffset(ZoneOffset.UTC))
+
+  val identifier: Codec[Record.Identifier] = int8.gimap
+
+  val identifiers: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.value))
+
+  val created: Codec[Record.Created] = instant.gimap
+
+  val updated: Codec[Record.Updated] = instant.gimap
+
+  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier ~ updated.opt ~ created ~ value).gimap
+  def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier ~ created ~ value).gimap
 
   val password: Codec[Password.Hashed] = text.imap(Password.Hashed.apply)(_.value)
 }
