@@ -16,22 +16,22 @@ final case class Record[A](
 }
 
 object Record {
-  final case class Identifier(value: Long) extends AnyVal
+  final case class Identifier(toLong: Long) extends AnyVal
 
   object Identifier {
-    implicit val order: Order[Record.Identifier] = Order.by(_.value)
+    implicit val order: Order[Record.Identifier] = Order.by(_.toLong)
   }
 
-  final case class Updated(value: Instant) extends AnyVal
+  final case class Updated(toInstant: Instant) extends AnyVal
 
   object Updated {
-    implicit val order: Order[Record.Updated] = Order.by[Updated, Instant](_.value)(Order.fromOrdering[Instant])
+    implicit val order: Order[Record.Updated] = Order.by[Updated, Instant](_.toInstant)(Order.fromOrdering[Instant])
   }
 
-  final case class Created(value: Instant) extends AnyVal
+  final case class Created(toInstant: Instant) extends AnyVal
 
   object Created {
-    implicit val order: Order[Record.Created] = Order.by[Created, Instant](_.value)(Order.fromOrdering[Instant])
+    implicit val order: Order[Record.Created] = Order.by[Created, Instant](_.toInstant)(Order.fromOrdering[Instant])
   }
 
   final case class Immutable[A](identifier: Record.Identifier, created: Record.Created, value: A) {
@@ -52,6 +52,24 @@ object Record {
 
     def created[A](value: A): ((Identifier, Created)) => Record.Immutable[A] = { case (identifier, created) =>
       Immutable(identifier, created, value)
+    }
+  }
+
+  final case class Plain[A](identifier: Identifier, value: A) {
+    def map[B](f: A => B): Record.Plain[B] = copy(value = f(value))
+    def traverse[G[_]: Applicative, B](f: A => G[B]): G[Record.Plain[B]] =
+      f(value).map(value => copy(value = value))
+  }
+
+  object Plain {
+    implicit val traverse: Traverse[Record.Plain] = new Traverse[Record.Plain] {
+      override def map[A, B](fa: Record.Plain[A])(f: A => B): Record.Plain[B] = fa.map(f)
+      override def traverse[G[_]: Applicative, A, B](fa: Record.Plain[A])(f: A => G[B]): G[Record.Plain[B]] =
+        fa.traverse(f)
+      override def foldLeft[A, B](fa: Record.Plain[A], b: B)(f: (B, A) => B): B = f(b, fa.value)
+
+      override def foldRight[A, B](fa: Record.Plain[A], lb: Eval[B])(f: (A, Eval[B]) => Eval[B]): Eval[B] =
+        f(fa.value, lb)
     }
   }
 
