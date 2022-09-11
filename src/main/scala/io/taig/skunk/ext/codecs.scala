@@ -26,6 +26,4 @@ object codecs {
 
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier ~ updated.opt ~ created ~ value).gimap
   def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier ~ created ~ value).gimap
-
-  val password: Codec[Password.Hashed] = text.imap(Password.Hashed.apply)(_.value)
 }
