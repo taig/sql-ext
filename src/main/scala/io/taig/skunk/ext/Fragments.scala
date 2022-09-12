@@ -1,9 +1,13 @@
 package io.taig.skunk.ext
 
-import skunk.{Fragment, Void}
 import skunk.implicits._
+import skunk.{Fragment, Void}
 
 object Fragments {
+  def insert(columns: List[String]): Fragment[Void] = sql"#${columns.map(column => s""""$column"""").mkString(", ")}"
+
+  def insert(columns: String*): Fragment[Void] = insert(columns.toList)
+
   def select(table: String, columns: List[String]): Fragment[Void] =
     sql"#${columns.map(column => s""""$table"."$column"""").mkString(", ")}"
 
