@@ -7,9 +7,16 @@ object Fragments {
   def select(table: String, columns: List[String]): Fragment[Void] =
     sql"#${columns.map(column => s""""$table"."$column"""").mkString(", ")}"
 
-  def record(table: String)(columns: String*): Fragment[Void] =
+  def select(table: String)(columns: String*): Fragment[Void] = select(table, columns.toList)
+
+  def record(table: String, columns: List[String]): Fragment[Void] =
     select(table, List("identifier", "updated", "created") ++ columns)
 
-  def immutable(table: String)(columns: String*): Fragment[Void] =
+  def record(table: String)(columns: String*): Fragment[Void] = record(table, columns.toList)
+
+  def immutable(table: String, columns: List[String]): Fragment[Void] =
     select(table, List("identifier", "created") ++ columns)
+
+  def immutable(table: String)(columns: String*): Fragment[Void] =
+    immutable(table, columns.toList)
 }
