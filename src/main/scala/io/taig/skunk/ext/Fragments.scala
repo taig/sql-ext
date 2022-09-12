@@ -19,4 +19,9 @@ object Fragments {
 
   def immutable(table: String)(columns: String*): Fragment[Void] =
     immutable(table, columns.toList)
+
+  def plain(table: String, columns: List[String]): Fragment[Void] =
+    select(table, List("identifier") ++ columns)
+
+  def plain(table: String)(columns: String*): Fragment[Void] = plain(table, columns.toList)
 }
