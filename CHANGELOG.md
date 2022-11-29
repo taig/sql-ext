@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.0
+
+_2022-11-29_
+
+* Upgrade to skunk 0.4.0-M1
+* ciString -> citext
+
 ## 0.0.5
 
 _2022-11-29_
