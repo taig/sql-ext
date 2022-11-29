@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.5
+
+_2022-11-29_
+
+* Upgrade to sbt-houserules 0.6.1
+* Upgrade to sbt-ci-release 1.5.11
+* Upgrade to skunk 0.3.2
+* Upgrade to scala 3.2.1
+* Upgrade to scala 2.13.10
+* Use setup-java caching mechanism
+
 ## 0.0.4
 
 _2022-09-12_
