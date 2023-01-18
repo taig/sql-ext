@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+_2023-01-18_
+
+* Upgrade to skunk 0.5.0
+* Upgrade to sbt 1.8.2
+
 ## 0.1.2
 
 _2023-01-04_
