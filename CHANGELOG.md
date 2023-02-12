@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+_2023-02-12_
+
+* Remove Database helpers
+* Drop support for scala 2.13
+* Upgrade to skunk 0.5.2
+
 ## 0.2.0
 
 _2023-01-18_
