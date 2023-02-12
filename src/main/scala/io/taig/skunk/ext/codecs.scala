@@ -8,7 +8,7 @@ import skunk.data.{Arr, Type}
 
 import java.time.{Instant, ZoneOffset}
 
-object codecs {
+object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
 
   @deprecated("Use cistring", since = "0.1.0")
@@ -30,4 +30,3 @@ object codecs {
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier ~ updated.opt ~ created ~ value).gimap
   def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier ~ created ~ value).gimap
   def plain[A](value: Codec[A]): Codec[Record.Plain[A]] = (identifier ~ value).gimap
-}

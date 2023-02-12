@@ -1,7 +1,6 @@
 val Version = new {
   val CaseInsensitive = "1.3.0"
-  val Scala213 = "2.13.10"
-  val Scala3 = "3.2.1"
+  val Scala = "3.2.2"
   val Skunk = "0.5.1"
 }
 
@@ -15,6 +14,7 @@ inThisBuild(
     licenses := List("MIT" -> url("https://raw.githubusercontent.com/taig/skunk-ext/main/LICENSE")),
     organization := "io.taig",
     organizationHomepage := Some(url("https://taig.io/")),
+    scalaVersion := Version.Scala,
     versionScheme := Some("early-semver")
   )
 )
@@ -26,13 +26,9 @@ blowoutGenerators ++= {
     Nil
 }
 
-crossScalaVersions := List(Version.Scala213, Version.Scala3)
-
 libraryDependencies ++=
   "org.tpolecat" %% "skunk-core" % Version.Skunk ::
     "org.typelevel" %% "case-insensitive" % Version.CaseInsensitive ::
     Nil
 
 name := "skunk-ext"
-
-scalaVersion := Version.Scala213

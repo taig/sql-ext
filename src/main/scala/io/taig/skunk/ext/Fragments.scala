@@ -3,7 +3,7 @@ package io.taig.skunk.ext
 import skunk.implicits._
 import skunk.{Fragment, Void}
 
-object Fragments {
+object Fragments:
   def insert(columns: List[String]): Fragment[Void] = sql"#${columns.map(column => s""""$column"""").mkString(", ")}"
 
   def insert(columns: String*): Fragment[Void] = insert(columns.toList)
@@ -28,4 +28,3 @@ object Fragments {
     select(table, List("identifier") ++ columns)
 
   def plain(table: String)(columns: String*): Fragment[Void] = plain(table, columns.toList)
-}
