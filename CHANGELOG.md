@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+
+_2023-05-02_
+
+* Upgrade to skunk 0.6.0-RC1
+* Upgrade to sbt-houserules 0.6.2
+
 ## 0.3.0
 
 _2023-02-12_
