@@ -24,6 +24,6 @@ object codecs:
 
   val updated: Codec[Record.Updated] = instant.imap(Record.Updated.apply)(_.toInstant)
 
-  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier ~ updated.opt ~ created ~ value).gimap
-  def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier ~ created ~ value).gimap
-  def plain[A](value: Codec[A]): Codec[Record.Plain[A]] = (identifier ~ value).gimap
+  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: updated.opt *: created *: value).as
+  def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier *: created *: value).as
+  def plain[A](value: Codec[A]): Codec[Record.Plain[A]] = (identifier *: value).as
