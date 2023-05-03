@@ -1,7 +1,7 @@
 val Version = new {
   val CaseInsensitive = "1.3.0"
   val Scala = "3.2.2"
-  val Skunk = "0.6.0-RC1"
+  val Skunk = "0.6.0-RC2"
 }
 
 enablePlugins(BlowoutYamlPlugin)
