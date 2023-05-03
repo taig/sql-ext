@@ -1,6 +1,6 @@
 package io.taig.skunk.ext
 
-import skunk.implicits._
+import skunk.implicits.*
 import skunk.{Fragment, Void}
 
 object Fragments:

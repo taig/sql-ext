@@ -1,9 +1,9 @@
 package io.taig.skunk.ext
 
-import cats.syntax.all._
+import cats.syntax.all.*
 import org.typelevel.ci.CIString
 import skunk.Codec
-import skunk.codec.all._
+import skunk.codec.all.*
 import skunk.data.{Arr, Type}
 
 import java.time.{Instant, ZoneOffset}

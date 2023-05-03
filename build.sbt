@@ -1,6 +1,6 @@
 val Version = new {
   val CaseInsensitive = "1.3.0"
-  val Scala = "3.2.2"
+  val Scala = "3.3.0-RC4"
   val Skunk = "0.6.0-RC2"
 }
 
@@ -18,6 +18,14 @@ inThisBuild(
     versionScheme := Some("early-semver")
   )
 )
+
+Compile / scalacOptions ++=
+  "-source:future" ::
+    "-rewrite" ::
+    "-new-syntax" ::
+    "-Wvalue-discard" ::
+    "-Wunused:all" ::
+    Nil
 
 blowoutGenerators ++= {
   val workflows = file(".github") / "workflows"
