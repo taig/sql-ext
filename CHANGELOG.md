@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.1
+
+_2023-05-03_
+
+* Upgrade to scala 3.3.0-RC4
+* Upgrade to skunk 0.6.0-RC2
+
 ## 0.4.0
 
 _2023-05-02_
