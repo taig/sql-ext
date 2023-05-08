@@ -27,3 +27,8 @@ object codecs:
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: updated.opt *: created *: value).to
   def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier *: created *: value).to
   def plain[A](value: Codec[A]): Codec[Record.Plain[A]] = (identifier *: value).to
+
+  inline def enumeration[A](tpe: String)(f: A => String): Codec[A] =
+    val values = enumValues[A]
+    val lookup: String => Option[A] = values.map(value => (f(value), value)).toMap.get
+    Codec.simple(f, value => lookup(value).toRight(s"Unknown value for $tpe: $value"), Type(tpe))
