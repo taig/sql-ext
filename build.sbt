@@ -1,5 +1,5 @@
 val Version = new {
-  val CaseInsensitive = "1.3.0"
+  val CaseInsensitive = "1.4.0"
   val Scala = "3.3.0"
   val Skunk = "0.6.0-RC2"
 }
