@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.3
+
+_2023-05-26_
+
+* Upgrade to scala 3.3.0
+* Upgrade to case-insensitive 1.4.0
+
 ## 0.4.2
 
 _2023-05-08_
