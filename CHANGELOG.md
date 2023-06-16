@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0
+
+_2023-06-16_
+
+* Remove codecs.enumeration inf favor of enumeration-ext-skunk
+* Upgrade to sbt-houserules 0.7.0
+* Upgrade to sbt-ci-release 1.5.12
+* Upgrade to sbt 1.9.0
+
 ## 0.4.4
 
 _2023-05-31_
