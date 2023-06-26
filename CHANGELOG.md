@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.1
+
+_2023-06-26_
+
+* Upgrade to sbt 1.9.1
+* Add Transaction.use helper
+
 ## 0.5.0
 
 _2023-06-16_
