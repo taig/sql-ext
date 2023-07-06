@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.3
+
+_2023-07-06_
+
+* Introduce a table type
+
 ## 0.5.2
 
 _2023-07-06_
