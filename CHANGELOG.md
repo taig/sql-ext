@@ -2,7 +2,10 @@
 
 ## 0.5.2
 
-_2023-06-26_
+_2023-07-06_
+
+* Introduce a Columns data structure
+* Deprecate Fragments helpers
 
 ## 0.5.1
 
