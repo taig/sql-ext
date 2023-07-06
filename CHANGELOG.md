@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.4
+
+_2023-07-06_
+
+* Distinct Insert & Select types
+
 ## 0.5.3
 
 _2023-07-06_
