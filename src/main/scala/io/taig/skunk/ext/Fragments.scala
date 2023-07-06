@@ -3,6 +3,7 @@ package io.taig.skunk.ext
 import skunk.implicits.*
 import skunk.{Fragment, Void}
 
+@deprecated("Use Columns data type")
 object Fragments:
   def insert(columns: List[String]): Fragment[Void] = sql"#${columns.map(column => s""""$column"""").mkString(", ")}"
 
