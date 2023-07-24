@@ -23,7 +23,6 @@ Compile / scalacOptions ++=
   "-source:future" ::
     "-rewrite" ::
     "-new-syntax" ::
-    "-Wvalue-discard" ::
     "-Wunused:all" ::
     Nil
 
