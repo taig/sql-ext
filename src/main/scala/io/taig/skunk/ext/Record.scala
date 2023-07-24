@@ -5,7 +5,7 @@ import cats.syntax.all.*
 
 import java.time.Instant
 
-final case class Record[A](
+final case class Record[+A](
     identifier: Record.Identifier,
     updated: Option[Record.Updated],
     created: Record.Created,
@@ -34,7 +34,7 @@ object Record:
     def apply(value: Instant): Record.Created = value
     given (using order: Order[Instant]): Order[Record.Created] = order
 
-  final case class Immutable[A](identifier: Record.Identifier, created: Record.Created, value: A):
+  final case class Immutable[+A](identifier: Record.Identifier, created: Record.Created, value: A):
     def map[B](f: A => B): Record.Immutable[B] = copy(value = f(value))
     def traverse[G[_]: Applicative, B](f: A => G[B]): G[Record.Immutable[B]] =
       f(value).map(value => copy(value = value))
@@ -51,7 +51,7 @@ object Record:
     def created[A](value: A): ((Identifier, Created)) => Record.Immutable[A] =
       case (identifier, created) => Immutable(identifier, created, value)
 
-  final case class Plain[A](identifier: Identifier, value: A):
+  final case class Plain[+A](identifier: Identifier, value: A):
     def map[B](f: A => B): Record.Plain[B] = copy(value = f(value))
     def traverse[G[_]: Applicative, B](f: A => G[B]): G[Record.Plain[B]] =
       f(value).map(value => copy(value = value))
