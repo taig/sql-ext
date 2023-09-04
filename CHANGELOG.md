@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.7.0
+
+_2023-09-04_
+
+* Remove Record.Created and .Updated
+* Deprecate query builder helpers
+* Add codecs._citext
+* Upgrade to sbt-houserules 0.7.2
+* Upgrade to sbt 1.9.4
+
+## 0.6.0
+
+_2023-07-24_
+
+* Make Record types covariant
+* Remove Fragments
+* Upgrade to sbt-houserules 0.7.1
+* Upgrade to sbt 1.9.3
+
 ## 0.5.4
 
 _2023-07-06_
@@ -18,15 +37,6 @@ _2023-07-06_
 
 * Introduce a Columns data structure
 * Deprecate Fragments helpers
-
-## 0.6.0
-
-_2023-07-24_
-
-* Make Record types covariant
-* Remove Fragments
-* Upgrade to sbt-houserules 0.7.1
-* Upgrade to sbt 1.9.3
 
 ## 0.5.1
 
