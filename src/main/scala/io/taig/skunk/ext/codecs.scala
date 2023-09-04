@@ -23,10 +23,4 @@ object codecs:
 
   val identifiers: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.toLong))
 
-  val created: Codec[Record.Created] = instant.imap(Record.Created.apply)(_.toInstant)
-
-  val updated: Codec[Record.Updated] = instant.imap(Record.Updated.apply)(_.toInstant)
-
-  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: updated.opt *: created *: value).to
-  def immutable[A](value: Codec[A]): Codec[Record.Immutable[A]] = (identifier *: created *: value).to
-  def plain[A](value: Codec[A]): Codec[Record.Plain[A]] = (identifier *: value).to
+  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
