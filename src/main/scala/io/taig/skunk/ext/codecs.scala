@@ -11,6 +11,9 @@ import java.time.{Instant, ZoneOffset}
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
 
+  val _citext: Codec[Arr[CIString]] =
+    Codec.array(_.toString, value => CIString(value).asRight, Type("_citext", List(Type("citext"))))
+
   /** A postgres `TIMESTAMPTZ` does not actually store the timezone information, but instead normalizes the time to UTC,
     * which (in some cases) is better represented by `Instant`
     */
