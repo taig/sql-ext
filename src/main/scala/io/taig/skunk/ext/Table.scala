@@ -7,6 +7,7 @@ import skunk.{Fragment, Void}
 
 import scala.annotation.targetName
 
+@deprecated
 final case class Table(name: String, columns: Chain[String | Table]):
   /* Render the table name as a `Fragment` */
   def sql(using origin: Origin): Fragment[Void] = fragment(s"\"$name\"")
@@ -28,5 +29,6 @@ final case class Table(name: String, columns: Chain[String | Table]):
     case (insert, column: String) => insert :+ column
     case (insert, table: Table)   => insert ++ table.insert
 
+@deprecated
 object Table:
   def apply(name: String)(columns: (String | Table)*): Table = Table(name, Chain.fromSeq(columns))

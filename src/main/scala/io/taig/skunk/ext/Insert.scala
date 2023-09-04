@@ -5,8 +5,10 @@ import cats.syntax.all.*
 import skunk.util.Origin
 import skunk.{Fragment, Void}
 
+@deprecated
 opaque type Insert = Chain[String]
 
+@deprecated
 object Insert:
   extension (self: Insert)
     def ++(insert: Insert): Insert = self ++ insert
