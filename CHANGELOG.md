@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1
+
+_2023-10-04_
+
+* `identifiers` -> `_identifier`
+* Upgrade to sbt-houserules 0.7.4
+* Upgrade to scala 3.3.1
+
 ## 0.7.0
 
 _2023-09-04_
