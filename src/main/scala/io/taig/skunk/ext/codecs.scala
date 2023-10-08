@@ -23,7 +23,4 @@ object codecs:
 
   val _identifier: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.toLong))
 
-  @deprecated("Use _identifier instead", since = "0.7.1")
-  val identifiers: Codec[Arr[Record.Identifier]] = _identifier
-
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
