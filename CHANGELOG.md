@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+
+_2023-10-08_
+
+* Remove deprecated code
+* Upgrade to skunk 1.0.0-RC1
+
 ## 0.7.1
 
 _2023-10-04_
