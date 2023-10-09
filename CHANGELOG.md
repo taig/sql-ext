@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1
+
+_2023-10-09_
+
+* Add enumeration-ext integration
+
 ## 0.8.0
 
 _2023-10-08_
