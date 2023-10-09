@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.2
+
+_2023-10-09_
+
+* Add UnixSocketSession
+
 ## 0.8.1
 
 _2023-10-09_
