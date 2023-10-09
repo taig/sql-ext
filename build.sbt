@@ -1,5 +1,6 @@
 val Version = new {
   val CaseInsensitive = "1.4.0"
+  val EnumerationExt = "0.0.3"
   val Scala = "3.3.1"
   val Skunk = "1.0.0-M1"
 }
@@ -34,7 +35,8 @@ blowoutGenerators ++= {
 }
 
 libraryDependencies ++=
-  "org.tpolecat" %% "skunk-core" % Version.Skunk ::
+  "io.taig" %% "enumeration-ext-core" % Version.EnumerationExt ::
+    "org.tpolecat" %% "skunk-core" % Version.Skunk ::
     "org.typelevel" %% "case-insensitive" % Version.CaseInsensitive ::
     Nil
 

@@ -1,6 +1,7 @@
 package io.taig.skunk.ext
 
 import cats.syntax.all.*
+import io.taig.enumeration.ext.{EnumerationValues, Mapping}
 import org.typelevel.ci.CIString
 import skunk.Codec
 import skunk.codec.all.*
@@ -24,3 +25,12 @@ object codecs:
   val _identifier: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.toLong))
 
   def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
+
+  def mapping[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[A] = Codec.simple(
+    mapping.inj,
+    s => mapping.prj(s).toRight(s"${tpe.name}: no such element '$s', expected '${mapping.values.mkString(",")}'"),
+    tpe
+  )
+
+  def enumeration[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[A] =
+    mapping(tpe)(using Mapping.enumeration(f))
