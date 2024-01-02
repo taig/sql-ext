@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.3
+
+_2024-01-02_
+
+* Add mapping helper that works on a base enum
+* Upgrade to sbt 1.9.8
+
 ## 0.8.2
 
 _2023-10-09_
