@@ -32,5 +32,10 @@ object codecs:
     tpe
   )
 
+  def mapping[A, B](codec: Codec[A])(using mapping: Mapping[B, A]): Codec[B] =
+    codec.eimap(a => mapping.prj(a).toRight(s"Unknown value '$a', expected '${mapping.values.mkString(",")}'"))(
+      mapping.inj
+    )
+
   def enumeration[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[A] =
     mapping(tpe)(using Mapping.enumeration(f))
