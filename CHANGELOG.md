@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0
+
+_2024-01-07_
+
+* Rename to sql-ext and split into core and skunk package
+
 ## 0.8.3
 
 _2024-01-02_
