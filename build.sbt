@@ -1,18 +1,24 @@
 val Version = new {
   val CaseInsensitive = "1.4.0"
+  val Cats = "2.10.0"
   val EnumerationExt = "0.0.3"
   val Scala = "3.3.1"
   val Skunk = "1.0.0-M1"
 }
 
-enablePlugins(BlowoutYamlPlugin)
+def module(identifier: Option[String]): Project = {
+  Project(identifier.getOrElse("root"), file(identifier.fold(".")("modules/" + _))).settings(
+    Compile / scalacOptions ++= "-source:future" :: "-rewrite" :: "-new-syntax" :: "-Wunused:all" :: Nil,
+    name := "sql-ext" + identifier.fold("")("-" + _)
+  )
+}
 
 inThisBuild(
   Def.settings(
     developers := List(Developer("taig", "Niklas Klein", "mail@taig.io", url("https://taig.io/"))),
     dynverVTagPrefix := false,
-    homepage := Some(url("https://github.com/taig/skunk-ext/")),
-    licenses := List("MIT" -> url("https://raw.githubusercontent.com/taig/skunk-ext/main/LICENSE")),
+    homepage := Some(url("https://github.com/taig/sql-ext/")),
+    licenses := List("MIT" -> url("https://raw.githubusercontent.com/taig/sql-ext/main/LICENSE")),
     organization := "io.taig",
     organizationHomepage := Some(url("https://taig.io/")),
     scalaVersion := Version.Scala,
@@ -20,24 +26,32 @@ inThisBuild(
   )
 )
 
-Compile / scalacOptions ++=
-  "-source:future" ::
-    "-rewrite" ::
-    "-new-syntax" ::
-    "-Wunused:all" ::
-    Nil
+lazy val root = module(identifier = None)
+  .enablePlugins(BlowoutYamlPlugin)
+  .settings(noPublishSettings)
+  .settings(
+    blowoutGenerators ++= {
+      val workflows = file(".github") / "workflows"
+      BlowoutYamlGenerator.lzy(workflows / "main.yml", GitHubActionsGenerator.main) ::
+        BlowoutYamlGenerator.lzy(workflows / "branches.yml", GitHubActionsGenerator.branches) ::
+        Nil
+    }
+  )
+  .aggregate(core, skunk)
 
-blowoutGenerators ++= {
-  val workflows = file(".github") / "workflows"
-  BlowoutYamlGenerator.lzy(workflows / "main.yml", GitHubActionsGenerator.main) ::
-    BlowoutYamlGenerator.lzy(workflows / "branches.yml", GitHubActionsGenerator.branches) ::
-    Nil
-}
+lazy val core = module(identifier = Some("core"))
+  .settings(
+    libraryDependencies ++=
+      "org.typelevel" %% "cats-core" % Version.Cats ::
+        Nil
+  )
 
-libraryDependencies ++=
-  "io.taig" %% "enumeration-ext-core" % Version.EnumerationExt ::
-    "org.tpolecat" %% "skunk-core" % Version.Skunk ::
-    "org.typelevel" %% "case-insensitive" % Version.CaseInsensitive ::
-    Nil
-
-name := "skunk-ext"
+lazy val skunk = module(identifier = Some("skunk"))
+  .settings(
+    libraryDependencies ++=
+      "io.taig" %% "enumeration-ext-core" % Version.EnumerationExt ::
+        "org.tpolecat" %% "skunk-core" % Version.Skunk ::
+        "org.typelevel" %% "case-insensitive" % Version.CaseInsensitive ::
+        Nil
+  )
+  .dependsOn(core)

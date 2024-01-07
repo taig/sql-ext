@@ -1,13 +1,17 @@
-package io.taig.skunk.ext
+package io.taig.sql.ext.skunk
 
 import cats.syntax.all.*
-import io.taig.enumeration.ext.{EnumerationValues, Mapping}
+import io.taig.enumeration.ext.EnumerationValues
+import io.taig.enumeration.ext.Mapping
+import io.taig.sql.ext.Record
 import org.typelevel.ci.CIString
 import skunk.Codec
 import skunk.codec.all.*
-import skunk.data.{Arr, Type}
+import skunk.data.Arr
+import skunk.data.Type
 
-import java.time.{Instant, ZoneOffset}
+import java.time.Instant
+import java.time.ZoneOffset
 
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))

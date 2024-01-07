@@ -1,4 +1,4 @@
-package io.taig.skunk.ext
+package io.taig.sql.ext.skunk
 
 import skunk.{Fragment, Void}
 import skunk.util.Origin

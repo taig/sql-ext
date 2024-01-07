@@ -1,4 +1,4 @@
-package io.taig.skunk.ext
+package io.taig.sql.ext.skunk
 
 import cats.effect.std.Console
 import cats.effect.{Resource, Temporal}

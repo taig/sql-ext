@@ -1,4 +1,4 @@
-package io.taig.skunk.ext
+package io.taig.sql.ext
 
 import cats.{Applicative, Eval, Order, Traverse}
 import cats.syntax.all.*

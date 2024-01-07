@@ -1,11 +1,12 @@
-# skunk ext
+# sql ext
 
-> Miscellaneous, opinionated skunk utilities
+> Miscellaneous, opinionated SQL & skunk utilities
 
 ## Installation
 
 ```sbt
 libraryDependencies ++=
-  "io.taig" %% "skunk-ext" % "x.y.z" ::
+  "io.taig" %% "sql-ext-core" % "x.y.z" ::
+  "io.taig" %% "sql-ext-skunk" % "x.y.z" ::
   Nil
 ```
