@@ -1,13 +1,18 @@
 package io.taig.sql.ext.skunk
 
-import cats.effect.{IO, Resource}
+import cats.effect.Resource
+import cats.effect.MonadCancelThrow
 import skunk.{Session, Transaction}
 
-final class Transaction private (val session: Session[IO], val underlying: skunk.Transaction[IO])
-    extends skunk.Transaction[IO]:
+final class Transaction[F[_]] private (val session: Session[F], val underlying: skunk.Transaction[F])
+    extends skunk.Transaction[F]:
   export underlying.*
 
 object Transaction:
-  def from(session: Session[IO]): Resource[IO, Transaction] = session.transaction.map(new Transaction(session, _))
-  def from(sessions: Resource[IO, Session[IO]]): Resource[IO, Transaction] = sessions.flatMap(from)
-  def use[A](sessions: Resource[IO, Session[IO]])(f: Transaction => IO[A]): IO[A] = from(sessions).use(f)
+  def from[F[_]](session: Session[F]): Resource[F, Transaction[F]] =
+    session.transaction.map(new Transaction(session, _))
+
+  def from[F[_]](sessions: Resource[F, Session[F]]): Resource[F, Transaction[F]] = sessions.flatMap(from)
+
+  def use[F[_]: MonadCancelThrow, A](sessions: Resource[F, Session[F]])(f: Transaction[F] => F[A]): F[A] =
+    from(sessions).use(f)
