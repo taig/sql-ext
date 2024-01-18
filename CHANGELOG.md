@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.2
+
+_2024-01-18_
+
+- Add RecordMissingException
+
 ## 0.9.1
 
 _2024-01-18_
