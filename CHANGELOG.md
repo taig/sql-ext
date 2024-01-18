@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.0
+
+_2024-01-18_
+
+- Use F[_] instead of IO in Transaction
+
 ## 0.9.2
 
 _2024-01-18_
