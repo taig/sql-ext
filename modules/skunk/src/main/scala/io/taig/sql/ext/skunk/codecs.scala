@@ -12,6 +12,7 @@ import skunk.data.Type
 
 import java.time.Instant
 import java.time.ZoneOffset
+import cats.Hash
 
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
@@ -43,3 +44,6 @@ object codecs:
 
   def enumeration[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[A] =
     mapping(tpe)(using Mapping.enumeration(f))
+
+  def enumeration[A: Hash, B](codec: Codec[A])(f: B => A)(using EnumerationValues.Aux[B, B]): Codec[B] =
+    mapping(codec)(using Mapping.enumeration(f))
