@@ -1,8 +1,12 @@
 # Changelog
 
-## 0.10.0
+## 0.10.1
 
-_2024-01-18_
+_2024-01-22_
+
+- Upgrade to skunk-ext 1.1.0-M3
+
+## 0.10.0
 
 - Use F[_] instead of IO in Transaction
 
