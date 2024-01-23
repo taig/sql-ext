@@ -47,3 +47,9 @@ object codecs:
 
   def enumeration[A: Hash, B](codec: Codec[A])(f: B => A)(using EnumerationValues.Aux[B, B]): Codec[B] =
     mapping(codec)(using Mapping.enumeration(f))
+
+  def arr[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[Arr[A]] =
+    Codec.array(mapping.inj, value => mapping.prj(value).toRight(s"Invalid: $value"), tpe)
+
+  def arr[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[Arr[A]] =
+    arr(tpe)(using Mapping.enumeration(f))
