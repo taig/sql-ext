@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.2
+
+_2024-01-23_
+
+- Add skunk arr codec helpers
+- Revert "Upgrade to skunk-ext 1.1.0-M3"
+
 ## 0.10.1
 
 _2024-01-22_
