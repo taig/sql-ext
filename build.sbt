@@ -3,7 +3,7 @@ val Version = new {
   val Cats = "2.10.0"
   val EnumerationExt = "0.0.3"
   val Scala = "3.3.1"
-  val Skunk = "1.1.0-M3"
+  val Skunk = "1.0.0-M1"
 }
 
 def module(identifier: Option[String]): Project = {
