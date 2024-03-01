@@ -20,3 +20,5 @@ object Record:
     override def traverse[G[_]: Applicative, A, B](fa: Record[A])(f: A => G[B]): G[Record[B]] = fa.traverse(f)
     override def foldLeft[A, B](fa: Record[A], b: B)(f: (B, A) => B): B = f(b, fa.value)
     override def foldRight[A, B](fa: Record[A], lb: Eval[B])(f: (A, Eval[B]) => Eval[B]): Eval[B] = f(fa.value, lb)
+
+  given [A: Order]: Order[Record[A]] = Order.by(Tuple.fromProductTyped)
