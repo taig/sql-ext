@@ -1,10 +1,19 @@
 # Changelog
 
+## 0.11.0
+
+_2024-03-01_
+
+- Upgrade to sbt 1.9.9
+- Upgrade to scala 3.4.0
+- Rename Transaction to Tx
+- Add Order instance for Record
+
 ## 0.10.3
 
 _2024-01-24_
 
- * Upgrade to skunk 1.0.0-M4
+- Upgrade to skunk 1.0.0-M4
 
 ## 0.10.2
 
