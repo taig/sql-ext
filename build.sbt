@@ -2,7 +2,7 @@ val Version = new {
   val CaseInsensitive = "1.4.0"
   val Cats = "2.10.0"
   val EnumerationExt = "0.0.3"
-  val Scala = "3.4.0"
+  val Scala = "3.3.3"
   val Skunk = "1.0.0-M4"
 }
 
