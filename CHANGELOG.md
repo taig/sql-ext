@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1
+
+_2024-03-20_
+
+- Add .skunk.codecs.record.encoder and .decoder
+- Upgrade to enumeration-ext 0.0.4
+
 ## 0.12.0
 
 _2024-03-14_
