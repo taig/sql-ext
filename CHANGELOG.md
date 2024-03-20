@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.0
+
+_2024-03-20_
+
+- Rename .skunk.codecs.record.encoder and .decoder to .apply
+
 ## 0.12.1
 
 _2024-03-20_
