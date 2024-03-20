@@ -13,6 +13,8 @@ import skunk.data.Type
 import java.time.Instant
 import java.time.ZoneOffset
 import cats.Hash
+import skunk.Encoder
+import skunk.Decoder
 
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
@@ -29,7 +31,10 @@ object codecs:
 
   val _identifier: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.toLong))
 
-  def record[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
+  object record:
+    def decoder[A](value: Decoder[A]): Decoder[Record[A]] = (identifier *: value).to
+    def encoder[A](value: Encoder[A]): Encoder[Record[A]] = (identifier *: value).to
+    def apply[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
 
   def mapping[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[A] = Codec.simple(
     mapping.inj,
