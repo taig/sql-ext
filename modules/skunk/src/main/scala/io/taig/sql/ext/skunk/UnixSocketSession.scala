@@ -39,7 +39,7 @@ object UnixSocketSession:
           password,
           debug,
           strategy,
-          None,
+          sslOptions = None,
           parameters,
           cache,
           pc,
