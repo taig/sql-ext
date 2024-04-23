@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.1
+
+_2024-04-23_
+
+- Upgrade to skunk 1.0.0-M5
+- Add named parameter
+
 ## 0.13.0
 
 _2024-03-20_
