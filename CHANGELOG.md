@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.3
+
+_2024-05-21_
+
+- Upgrade to sbt 1.10.0
+- Add accessMode and isolationLevel controls to Tx
+
 ## 0.13.2
 
 _2024-05-13_
