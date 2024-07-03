@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.13.4
+
+_2024-07-03_
+
+- Add Resource[F, Session[F]] alias SxPool[F]
+- Add Session alias Sx
+- Add codec +: and | extensions
+- Upgrade to cats 2.12.0
+
 ## 0.13.3
 
 _2024-05-21_
