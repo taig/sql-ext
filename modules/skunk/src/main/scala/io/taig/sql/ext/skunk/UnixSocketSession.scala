@@ -28,8 +28,8 @@ object UnixSocketSession:
       parseCache: Int = 1024,
       readTimeout: Duration = Duration.Inf,
       redactionStrategy: RedactionStrategy = RedactionStrategy.OptIn
-  ): Resource[F, Resource[F, Session[F]]] =
-    def session(sockets: Resource[F, Socket[F]], cache: Describe.Cache[F], tracer: Tracer[F]): Resource[F, Session[F]] =
+  ): Resource[F, SxPool[F]] =
+    def session(sockets: Resource[F, Socket[F]], cache: Describe.Cache[F], tracer: Tracer[F]): SxPool[F] =
       for
         pc <- Resource.eval(Parse.Cache.empty[F](parseCache))
         session <- Session.fromSockets[F](
@@ -67,7 +67,7 @@ object UnixSocketSession:
       parseCache: Int = 1024,
       readTimeout: Duration = Duration.Inf,
       redactionStrategy: RedactionStrategy = RedactionStrategy.OptIn
-  ): Resource[F, Resource[F, Session[F]]] = pooled(
+  ): Resource[F, SxPool[F]] = pooled(
     UnixSockets[F].client(UnixSocketAddress(s"/cloudsql/$instanceConnectionName/.s.PGSQL.5432")),
     user,
     database,
