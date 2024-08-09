@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0
+
+_2024-08-09_
+
+- Upgrade to enumeration-ext 0.2.0
+
 ## 0.13.4
 
 _2024-07-03_
