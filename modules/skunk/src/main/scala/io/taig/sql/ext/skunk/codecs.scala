@@ -12,7 +12,7 @@ import skunk.data.Type
 
 import java.time.Instant
 import java.time.ZoneOffset
-import cats.Hash
+import cats.Order
 import skunk.Encoder
 import skunk.Decoder
 
@@ -38,19 +38,20 @@ object codecs:
 
   def mapping[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[A] = Codec.simple(
     mapping.inj,
-    s => mapping.prj(s).toRight(s"${tpe.name}: no such element '$s', expected '${mapping.values.mkString(",")}'"),
+    s =>
+      mapping.prj(s).toRight(s"${tpe.name}: no such element '$s', expected '${mapping.values.toList.mkString(",")}'"),
     tpe
   )
 
   def mapping[A, B](codec: Codec[A])(using mapping: Mapping[B, A]): Codec[B] =
-    codec.eimap(a => mapping.prj(a).toRight(s"Unknown value '$a', expected '${mapping.values.mkString(",")}'"))(
+    codec.eimap(a => mapping.prj(a).toRight(s"Unknown value '$a', expected '${mapping.values.toList.mkString(",")}'"))(
       mapping.inj
     )
 
   def enumeration[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[A] =
     mapping(tpe)(using Mapping.enumeration(f))
 
-  def enumeration[A: Hash, B](codec: Codec[A])(f: B => A)(using EnumerationValues.Aux[B, B]): Codec[B] =
+  def enumeration[A: Order, B](codec: Codec[A])(f: B => A)(using EnumerationValues.Aux[B, B]): Codec[B] =
     mapping(codec)(using Mapping.enumeration(f))
 
   def arr[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[Arr[A]] =
