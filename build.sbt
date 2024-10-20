@@ -3,7 +3,7 @@ val Version = new {
   val Cats = "2.12.0"
   val DisciplineMunit = "2.0.0"
   val EnumerationExt = "0.2.0"
-  val Scala = "3.3.3"
+  val Scala = "3.3.4"
   val Skunk = "1.0.0-M7"
 }
 
