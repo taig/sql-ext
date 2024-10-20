@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.14.2
+
+_2024-10-20_
+
+- Add `Upsert`
+- Upgrade to case-insensitive 1.4.2
+- Upgrade to sbt-ci-release 1.8.0
+- Upgrade to scala 3.3.4
+- Upgrade to sbt-houserules 0.9.0
+- Apply scalafix
+- Upgrade CI dependencies
+
 ## 0.14.1
 
 _2024-09-25_
