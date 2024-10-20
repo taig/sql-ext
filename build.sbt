@@ -1,5 +1,5 @@
 val Version = new {
-  val CaseInsensitive = "1.4.0"
+  val CaseInsensitive = "1.4.2"
   val Cats = "2.12.0"
   val DisciplineMunit = "2.0.0"
   val EnumerationExt = "0.2.0"
