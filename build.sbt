@@ -1,6 +1,7 @@
 val Version = new {
   val CaseInsensitive = "1.4.0"
   val Cats = "2.12.0"
+  val DisciplineMunit = "2.0.0"
   val EnumerationExt = "0.2.0"
   val Scala = "3.3.3"
   val Skunk = "1.0.0-M7"
@@ -33,7 +34,8 @@ lazy val root = module(identifier = None)
     blowoutGenerators ++= {
       val workflows = file(".github") / "workflows"
       BlowoutYamlGenerator.lzy(workflows / "main.yml", GitHubActionsGenerator.main) ::
-        BlowoutYamlGenerator.lzy(workflows / "branches.yml", GitHubActionsGenerator.branches) ::
+        BlowoutYamlGenerator.lzy(workflows / "pull-request.yml", GitHubActionsGenerator.pullRequest) ::
+        BlowoutYamlGenerator.lzy(workflows / "tag.yml", GitHubActionsGenerator.tag) ::
         Nil
     }
   )
@@ -43,6 +45,8 @@ lazy val core = module(identifier = Some("core"))
   .settings(
     libraryDependencies ++=
       "org.typelevel" %% "cats-core" % Version.Cats ::
+        "org.typelevel" %% "cats-laws" % Version.Cats % "test" ::
+        "org.typelevel" %% "discipline-munit" % Version.DisciplineMunit % "test" ::
         Nil
   )
 
