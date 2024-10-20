@@ -1,15 +1,20 @@
 package io.taig.sql.ext.skunk
 
+import cats.effect.Resource
+import cats.effect.Temporal
 import cats.effect.std.Console
-import cats.effect.{Resource, Temporal}
 import cats.syntax.all.*
-import fs2.io.net.unixsocket.{UnixSocketAddress, UnixSockets}
 import fs2.io.net.Socket
+import fs2.io.net.unixsocket.UnixSocketAddress
+import fs2.io.net.unixsocket.UnixSockets
 import org.typelevel.otel4s.trace.Tracer
+import skunk.RedactionStrategy
+import skunk.Session
 import skunk.Session.Recyclers
-import skunk.net.protocol.{Describe, Parse}
-import skunk.util.{Pool, Typer}
-import skunk.{RedactionStrategy, Session}
+import skunk.net.protocol.Describe
+import skunk.net.protocol.Parse
+import skunk.util.Pool
+import skunk.util.Typer
 
 import scala.concurrent.duration.Duration
 

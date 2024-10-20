@@ -1,10 +1,11 @@
 package io.taig.sql.ext.skunk
 
-import cats.effect.Resource
 import cats.effect.MonadCancelThrow
-import skunk.{Session, Transaction}
-import skunk.data.TransactionIsolationLevel
+import cats.effect.Resource
+import skunk.Session
+import skunk.Transaction
 import skunk.data.TransactionAccessMode
+import skunk.data.TransactionIsolationLevel
 
 final class Tx[F[_]] private (
     val session: Session[F],

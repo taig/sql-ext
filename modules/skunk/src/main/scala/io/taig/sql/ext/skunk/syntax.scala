@@ -1,7 +1,7 @@
 package io.taig.sql.ext.skunk
 
-import skunk.Codec
 import cats.syntax.all.*
+import skunk.Codec
 
 object syntax:
   extension [A](self: Codec[A])

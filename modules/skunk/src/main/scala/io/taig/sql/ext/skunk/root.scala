@@ -1,9 +1,10 @@
 package io.taig.sql.ext.skunk
 
-import skunk.{Fragment, Void}
-import skunk.util.Origin
-import skunk.Session
 import cats.effect.kernel.Resource
+import skunk.Fragment
+import skunk.Session
+import skunk.Void
+import skunk.util.Origin
 
 type Sx[F[_]] = Session[F]
 

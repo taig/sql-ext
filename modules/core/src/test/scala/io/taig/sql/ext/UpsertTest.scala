@@ -1,15 +1,11 @@
 package io.taig.sql.ext
 
-import munit.DisciplineSuite
-import cats.kernel.laws.SemigroupLaws
-import cats.laws.SemigroupalLaws
+import cats.laws.discipline.ApplicativeTests
 import cats.laws.discipline.SemigroupalTests
+import cats.laws.discipline.TraverseTests
+import munit.DisciplineSuite
 import org.scalacheck.Arbitrary
 import org.scalacheck.Gen
-import cats.syntax.all.*
-import cats.laws.discipline.TraverseTests
-import cats.laws.discipline.ApplicativeTests
-import cats.kernel.laws.discipline.EqTests
 
 final class UpsertTest extends DisciplineSuite:
   def gen[A](using a: Arbitrary[A]): Gen[Upsert[A]] =

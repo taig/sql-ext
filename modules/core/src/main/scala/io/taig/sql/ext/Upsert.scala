@@ -1,13 +1,10 @@
 package io.taig.sql.ext
-
-import cats.Functor
-import cats.Semigroupal
-import cats.syntax.all.*
 import cats.Applicative
-import cats.Traverse
-import cats.Eval
 import cats.Eq
-import cats.data.Ior
+import cats.Eval
+import cats.Semigroupal
+import cats.Traverse
+import cats.syntax.all.*
 
 enum Upsert[A]:
   case Created(value: A)

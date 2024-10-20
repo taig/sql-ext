@@ -1,6 +1,9 @@
 package io.taig.sql.ext
 
-import cats.{Applicative, Eval, Order, Traverse}
+import cats.Applicative
+import cats.Eval
+import cats.Order
+import cats.Traverse
 import cats.syntax.all.*
 
 final case class Record[+A](identifier: Record.Identifier, value: A):
