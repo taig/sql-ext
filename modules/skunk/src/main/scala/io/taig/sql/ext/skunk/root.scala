@@ -10,4 +10,5 @@ type Sx[F[_]] = Session[F]
 
 type SxPool[F[_]] = Resource[F, Sx[F]]
 
+@deprecated
 def fragment(sql: String)(using origin: Origin): Fragment[Void] = Fragment(List(Left(sql)), Void.codec, origin)

@@ -27,13 +27,19 @@ object codecs:
     */
   val instant: Codec[Instant] = timestamptz.imap(_.toInstant)(_.atOffset(ZoneOffset.UTC))
 
+  @deprecated("Record will be removed", "sql-ext 0.15.0")
   val identifier: Codec[Record.Identifier] = int8.imap(Record.Identifier.apply)(_.toLong)
 
+  @deprecated("Record will be removed", "sql-ext 0.15.0")
   val _identifier: Codec[Arr[Record.Identifier]] = _int8.imap(_.map(Record.Identifier.apply))(_.map(_.toLong))
 
+  @deprecated("Record will be removed", "sql-ext 0.15.0")
   object record:
+    @deprecated("Record will be removed", "sql-ext 0.15.0")
     def apply[A](value: Decoder[A]): Decoder[Record[A]] = (identifier *: value).to
+    @deprecated("Record will be removed", "sql-ext 0.15.0")
     def apply[A](value: Encoder[A]): Encoder[Record[A]] = (identifier *: value).to
+    @deprecated("Record will be removed", "sql-ext 0.15.0")
     def apply[A](value: Codec[A]): Codec[Record[A]] = (identifier *: value).to
 
   def mapping[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[A] = Codec.simple(
