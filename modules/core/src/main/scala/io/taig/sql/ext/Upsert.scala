@@ -6,7 +6,7 @@ import cats.Semigroupal
 import cats.Traverse
 import cats.syntax.all.*
 
-enum Upsert[A]:
+enum Upsert[+A]:
   case Created(value: A)
   case Unchanged(value: A)
   case Updated(previous: A, current: A)
