@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.14.3
+
+_2024-11-06_
+
+- Discard `ClosedChannelException` in `UnixSocketSession.googleCloudRun`
+- Deprecate `Record`
+- Add skunk.upsert helper
+- Make Upsert covariant
+- Upgrade to sbt-ci-release 1.9.0
+- Upgrade to sbt 1.10.5
+
 ## 0.14.2
 
 _2024-10-20_

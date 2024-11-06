@@ -1,13 +1,13 @@
 package io.taig.sql.ext.skunk
 
+import cats.Monad
 import cats.effect.Resource
 import cats.syntax.all.*
+import io.taig.sql.ext.Upsert
 import skunk.Fragment
 import skunk.Session
 import skunk.Void
 import skunk.util.Origin
-import io.taig.sql.ext.Upsert
-import cats.Monad
 
 type Sx[F[_]] = Session[F]
 

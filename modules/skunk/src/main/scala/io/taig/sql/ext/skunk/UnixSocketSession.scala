@@ -16,8 +16,8 @@ import skunk.net.protocol.Parse
 import skunk.util.Pool
 import skunk.util.Typer
 
-import scala.concurrent.duration.Duration
 import java.nio.channels.ClosedChannelException
+import scala.concurrent.duration.Duration
 
 object UnixSocketSession:
   def pooled[F[_]: Temporal: Tracer: Console](
