@@ -17,6 +17,7 @@ import skunk.util.Pool
 import skunk.util.Typer
 
 import scala.concurrent.duration.Duration
+import java.nio.channels.ClosedChannelException
 
 object UnixSocketSession:
   def pooled[F[_]: Temporal: Tracer: Console](
@@ -72,18 +73,27 @@ object UnixSocketSession:
       parseCache: Int = 1024,
       readTimeout: Duration = Duration.Inf,
       redactionStrategy: RedactionStrategy = RedactionStrategy.OptIn
-  ): Resource[F, SxPool[F]] = pooled(
-    UnixSockets[F].client(UnixSocketAddress(s"/cloudsql/$instanceConnectionName/.s.PGSQL.5432")),
-    user,
-    database,
-    password,
-    max,
-    debug,
-    strategy,
-    parameters,
-    commandCache,
-    queryCache,
-    parseCache,
-    readTimeout,
-    redactionStrategy
-  )
+  ): Resource[F, SxPool[F]] =
+    val sessions = pooled(
+      UnixSockets[F].client(UnixSocketAddress(s"/cloudsql/$instanceConnectionName/.s.PGSQL.5432")),
+      user,
+      database,
+      password,
+      max,
+      debug,
+      strategy,
+      parameters,
+      commandCache,
+      queryCache,
+      parseCache,
+      readTimeout,
+      redactionStrategy
+    )
+
+    Resource
+      .make(sessions.allocated) { case (_, finalize) =>
+        finalize.recoverWith { case _: ClosedChannelException =>
+          Temporal[F].unit
+        }
+      }
+      .map { case (px, _) => px }
