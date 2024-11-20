@@ -4,7 +4,7 @@ val Version = new {
   val DisciplineMunit = "2.0.0"
   val EnumerationExt = "0.2.0"
   val Scala = "3.3.4"
-  val Skunk = "1.0.0-M7"
+  val Skunk = "1.0.0-M8"
 }
 
 def module(identifier: Option[String]): Project = {
