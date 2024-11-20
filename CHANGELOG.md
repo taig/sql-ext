@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.0
+
+_2024-11-20_
+
+- Upgrade to enumeration-ext 0.3.0
+- Upgrade to skunk 1.0.0-M8
+
 ## 0.14.3
 
 _2024-11-06_
