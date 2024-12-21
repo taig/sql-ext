@@ -20,8 +20,6 @@ inThisBuild(
     dynverVTagPrefix := false,
     homepage := Some(url("https://github.com/taig/sql-ext/")),
     licenses := List("MIT" -> url("https://raw.githubusercontent.com/taig/sql-ext/main/LICENSE")),
-    organization := "io.taig",
-    organizationHomepage := Some(url("https://taig.io/")),
     scalaVersion := Version.Scala,
     versionScheme := Some("early-semver")
   )
