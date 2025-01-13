@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.15.1
+
+_2025-01-13_
+
+- Upgrade to skunk 1.0.0-M9
+- Upgrade to sbt 1.10.7
+- Upgrade to enumeration-ext 0.3.1
+- Upgrade to sbt-houserules 0.11.0
+- Upgrade to sbt-ci-release 1.9.2
+
 ## 0.15.0
 
 _2024-11-20_
