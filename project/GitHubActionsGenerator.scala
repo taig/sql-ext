@@ -13,6 +13,11 @@ object GitHubActionsGenerator {
       )
     )
 
+    val SetupSbt: Json = Json.obj(
+      "name" := "Setup sbt",
+      "uses" := "sbt/setup-sbt@v1"
+    )
+
     val Checkout: Json = Json.obj(
       "name" := "Checkout",
       "uses" := "actions/checkout@v4"
@@ -26,6 +31,7 @@ object GitHubActionsGenerator {
       "steps" := List(
         Step.Checkout,
         Step.SetupJava,
+        Step.SetupSbt,
         Json.obj(
           "name" := "Workflows",
           "run" := "sbt blowoutCheck"
@@ -48,6 +54,7 @@ object GitHubActionsGenerator {
       "steps" := List(
         Step.Checkout,
         Step.SetupJava,
+        Step.SetupSbt,
         Json.obj(
           "name" := "Release",
           "run" := "sbt ci-release",

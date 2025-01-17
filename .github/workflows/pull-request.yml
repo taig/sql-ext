@@ -20,6 +20,8 @@ jobs:
         cache: sbt
         distribution: temurin
         java-version: '17'
+    - name: Setup sbt
+      uses: sbt/setup-sbt@v1
     - name: Workflows
       run: sbt blowoutCheck
     - name: Code formatting
