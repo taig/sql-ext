@@ -7,6 +7,7 @@ _2025-01-17_
 - Upgrade to sbt-houserules 0.11.3
 - Upgrade to sbt-blowout 0.1.2
 - Upgrade to skunk 1.0.0-M10
+- Fix sbt in CI
 
 ## 0.15.1
 
