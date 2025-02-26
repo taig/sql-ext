@@ -17,7 +17,7 @@ object GitHubActionsGenerator {
       "name" := "Setup sbt",
       "uses" := "sbt/setup-sbt@v1",
       "with" := Json.obj(
-        "fetch-depth" := 0
+        "fetch-depth" := "0"
       )
     )
 

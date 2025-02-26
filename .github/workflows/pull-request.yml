@@ -24,7 +24,7 @@ jobs:
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
       with:
-        fetch-depth: 0
+        fetch-depth: '0'
     - run: sbt blowoutCheck
   scalafmt:
     name: Scalafmt
@@ -44,7 +44,7 @@ jobs:
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
       with:
-        fetch-depth: 0
+        fetch-depth: '0'
     - run: sbt scalafmtCheckAll
   scalafix:
     name: Scalafix
@@ -64,5 +64,5 @@ jobs:
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
       with:
-        fetch-depth: 0
+        fetch-depth: '0'
     - run: sbt scalafixAll
