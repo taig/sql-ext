@@ -4,17 +4,11 @@ import cats.Monad
 import cats.effect.Resource
 import cats.syntax.all.*
 import io.taig.sql.ext.Upsert
-import skunk.Fragment
 import skunk.Session
-import skunk.Void
-import skunk.util.Origin
 
 type Sx[F[_]] = Session[F]
 
 type SxPool[F[_]] = Resource[F, Sx[F]]
-
-@deprecated
-def fragment(sql: String)(using origin: Origin): Fragment[Void] = Fragment(List(Left(sql)), Void.codec, origin)
 
 def upsert[F[_]: Monad, A](tx: Tx[F])(
     create: (Sx[F], A) => F[Boolean],
