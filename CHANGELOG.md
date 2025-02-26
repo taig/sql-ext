@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0
+
+_2025-02-26_
+
+- Remove deprecated definitions
+- Upgrade to sbt-houserules 0.11.4
+- Upgrade to sbt-blowout 0.2.1
+- Upgrade to cats 2.13.0
+- More modular CI steps
+
 ## 0.15.2
 
 _2025-01-17_
