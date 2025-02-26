@@ -15,7 +15,10 @@ object GitHubActionsGenerator {
 
     val SetupSbt: Json = Json.obj(
       "name" := "Setup sbt",
-      "uses" := "sbt/setup-sbt@v1"
+      "uses" := "sbt/setup-sbt@v1",
+      "with" := Json.obj(
+        "fetch-depth" := 0
+      )
     )
 
     val Checkout: Json = Json.obj(

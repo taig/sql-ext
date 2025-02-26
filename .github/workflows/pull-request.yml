@@ -23,6 +23,8 @@ jobs:
         java-version: '21'
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
+      with:
+        fetch-depth: 0
     - run: sbt blowoutCheck
   scalafmt:
     name: Scalafmt
@@ -41,6 +43,8 @@ jobs:
         java-version: '21'
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
+      with:
+        fetch-depth: 0
     - run: sbt scalafmtCheckAll
   scalafix:
     name: Scalafix
@@ -59,4 +63,6 @@ jobs:
         java-version: '21'
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
+      with:
+        fetch-depth: 0
     - run: sbt scalafixAll
