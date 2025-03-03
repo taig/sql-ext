@@ -65,7 +65,7 @@ jobs:
         java-version: '21'
     - name: Setup sbt
       uses: sbt/setup-sbt@v1
-    - run: sbt scalafixAll
+    - run: sbt scalafixCheckAll
   deploy:
     name: Deploy
     runs-on: ubuntu-latest

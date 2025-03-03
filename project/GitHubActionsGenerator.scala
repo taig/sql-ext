@@ -48,7 +48,7 @@ object GitHubActionsGenerator {
       Step.Checkout,
       Step.SetupJava,
       Step.SetupSbt,
-      Json.obj("run" := "sbt scalafixAll")
+      Json.obj("run" := "sbt scalafixCheckAll")
     )
 
     val Deploy: Json = Job(name = "Deploy", mode = "RELEASE", needs = List("blowout", "scalafmt", "scalafix"))(
