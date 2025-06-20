@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.16.1
+
+_2025-06-20_
+
+- Upgrade to sbt 1.11.2
+- Upgrade to sbt-ci-release 1.11.1
+- Upgrade to sbt-houserules 0.11.5
+- Upgrade to case-insensitive 1.5.0
+- Upgrade to scala 3.3.6
+- Upgrade to enumeration-ext 0.4.0
+
 ## 0.16.0
 
 _2025-02-26_
