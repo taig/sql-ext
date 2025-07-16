@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.0
+
+_2025-07-16_
+
+- Upgrade to skunk 1.0.0-M11
+- Upgrade to sbt 1.11.3
+
 ## 0.16.1
 
 _2025-06-20_
