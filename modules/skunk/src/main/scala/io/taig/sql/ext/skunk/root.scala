@@ -16,7 +16,7 @@ def upsert[F[_]: Monad, A](tx: Tx[F])(
     update: (Sx[F], A) => F[Unit],
     hasChanged: (A, A) => Boolean
 )(a: A): F[Upsert[A]] = create(tx.session, a).flatMap:
-  case true => Upsert.Created(a).pure
+  case true  => Upsert.Created(a).pure
   case false =>
     get(tx.session, a).flatMap: current =>
       if hasChanged(current, a)

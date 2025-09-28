@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.18.0
+
+_2025-09_28_
+
+- Upgrade to sbt-houserules 0.11.6
+- Upgrade to sbt-ci-release 1.11.2
+- Upgrade to sbt 1.11.6
+- Upgrade to enumeration-ext 0.5.0
+
 ## 0.17.1
 
 _2025-07-16_
