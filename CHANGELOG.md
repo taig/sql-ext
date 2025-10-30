@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.19.0
+
+_2025-10_30_
+
+- Upgrade to sbt-houserules 0.11.7
+- Upgrade to sbt 1.11.7
+- Upgrade to scala 3.3.7
+- Upgrade to skunk 1.0.0-M12
+
 ## 0.18.0
 
 _2025-09_28_
