@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.20.0
+
+_2026-02-10_
+
+- Upgrade to enumeration-ext 0.6.0
+- Upgrade to sbt-houserules 0.11.10
+- Upgrade to sbt 1.12.2
+
 ## 0.19.0
 
 _2025-10_30_
