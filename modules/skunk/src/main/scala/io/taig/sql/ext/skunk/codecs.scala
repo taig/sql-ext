@@ -3,11 +3,11 @@ package io.taig.sql.ext.skunk
 import cats.Order
 import cats.syntax.all.*
 import io.taig.mapping.Mapping
+import io.taig.mapping.SingletonValues
 import org.typelevel.ci.CIString
 import skunk.Codec
 import skunk.data.Arr
 import skunk.data.Type
-import io.taig.mapping.SingletonValues
 
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
