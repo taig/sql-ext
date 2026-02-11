@@ -2,12 +2,12 @@ package io.taig.sql.ext.skunk
 
 import cats.Order
 import cats.syntax.all.*
-import io.taig.enumeration.ext.EnumerationValues
-import io.taig.enumeration.ext.Mapping
+import io.taig.mapping.Mapping
 import org.typelevel.ci.CIString
 import skunk.Codec
 import skunk.data.Arr
 import skunk.data.Type
+import io.taig.mapping.SingletonValues
 
 object codecs:
   val citext: Codec[CIString] = Codec.simple(_.toString, CIString(_).asRight, Type("citext"))
@@ -27,14 +27,14 @@ object codecs:
       mapping.inj
     )
 
-  def enumeration[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[A] =
-    mapping(tpe)(using Mapping.enumeration(f))
+  def enumeration[A](tpe: Type)(f: A => String)(using SingletonValues[A]): Codec[A] =
+    mapping(tpe)(using Mapping.of(f))
 
-  def enumeration[A: Order, B](codec: Codec[A])(f: B => A)(using EnumerationValues.Aux[B, B]): Codec[B] =
-    mapping(codec)(using Mapping.enumeration(f))
+  def enumeration[A: Order, B](codec: Codec[A])(f: B => A)(using SingletonValues[B]): Codec[B] =
+    mapping(codec)(using Mapping.of(f))
 
   def arr[A](tpe: Type)(using mapping: Mapping[A, String]): Codec[Arr[A]] =
     Codec.array(mapping.inj, value => mapping.prj(value).toRight(s"Invalid: $value"), tpe)
 
-  def arr[A](tpe: Type)(f: A => String)(using EnumerationValues.Aux[A, A]): Codec[Arr[A]] =
-    arr(tpe)(using Mapping.enumeration(f))
+  def arr[A](tpe: Type)(f: A => String)(using SingletonValues[A]): Codec[Arr[A]] =
+    arr(tpe)(using Mapping.of(f))

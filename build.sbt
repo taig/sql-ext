@@ -2,7 +2,7 @@ val Version = new {
   val CaseInsensitive = "1.5.0"
   val Cats = "2.13.0"
   val DisciplineMunit = "2.0.0"
-  val EnumerationExt = "0.6.0"
+  val Mapping = "0.7.0"
   val Scala = "3.3.7"
   val Skunk = "1.0.0-M12"
 }
@@ -51,7 +51,7 @@ lazy val core = module(identifier = Some("core"))
 lazy val skunk = module(identifier = Some("skunk"))
   .settings(
     libraryDependencies ++=
-      "io.taig" %% "enumeration-ext-core" % Version.EnumerationExt ::
+      "io.taig" %% "mapping-core" % Version.Mapping ::
         "org.tpolecat" %% "skunk-core" % Version.Skunk ::
         "org.typelevel" %% "case-insensitive" % Version.CaseInsensitive ::
         Nil
