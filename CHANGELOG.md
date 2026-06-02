@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.22.1
+
+_2026-06-02_
+
+- Upgrade to twiddles 1.1.0-RC1
+- Upgrade CI dependencies
+
 ## 0.22.0
 
 _2026-02-11_
