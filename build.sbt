@@ -50,6 +50,7 @@ lazy val core = module(identifier = Some("core"))
 
 lazy val skunk = module(identifier = Some("skunk"))
   .settings(
+    libraryDependencies += "org.typelevel" %% "twiddles-core" % "1.1.0-RC1",
     libraryDependencies ++=
       "io.taig" %% "mapping-core" % Version.Mapping ::
         "org.tpolecat" %% "skunk-core" % Version.Skunk ::
